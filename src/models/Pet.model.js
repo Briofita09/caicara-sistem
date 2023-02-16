@@ -9,7 +9,7 @@ const petSchema = new Schema(
       trim: true,
     },
     age: {
-      type: number,
+      type: Number,
       required: true,
     },
     birthday: {
