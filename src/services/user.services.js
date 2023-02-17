@@ -7,6 +7,7 @@ const numberOfSalts = 10;
 
 export async function createUser(user) {
   const userExist = await userRepository.findUserByEmail(user.email);
+  console.log(userExist);
 
   if (userExist) return null;
 
@@ -14,7 +15,7 @@ export async function createUser(user) {
   const hashedPassword = bcrypt.hashSync(user.password, salt);
   const newUser = await userRepository.createUser({
     ...user,
-    password: hashedPassword,
+    passwordHash: hashedPassword,
   });
   return newUser;
 }
@@ -23,13 +24,20 @@ export async function loginUser(user) {
   const userExist = await userRepository.findUserByEmail(user.email);
 
   if (!userExist) return null;
+  console.log(userExist);
 
-  if (!bcrypt.compareSync(user.password, userExist.password)) return null;
+  if (!bcrypt.compareSync(user.password, userExist.passwordHash)) return null;
 
   const expiresIn = process.env.EXPIRES_IN;
   const secretToken = process.env.SECRET_TOKEN;
 
   const token = jwt.sign({ user: userExist.id }, secretToken, { expiresIn });
 
-  return token;
+  const returnedUser = {
+    token,
+    name: userExist.name,
+    email: userExist.email,
+  };
+
+  return returnedUser;
 }

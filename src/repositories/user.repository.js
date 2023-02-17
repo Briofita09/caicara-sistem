@@ -5,5 +5,5 @@ export async function createUser(user) {
 }
 
 export async function findUserByEmail(email) {
-  return await User.find({ email });
+  return await User.findOne({ email });
 }

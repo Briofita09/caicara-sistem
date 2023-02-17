@@ -1,3 +1,5 @@
+import * as userService from "../services/user.services.js";
+
 export async function createUser(req, res) {
   try {
     const user = req.body;
@@ -6,10 +8,11 @@ export async function createUser(req, res) {
       return res.status(409).json({ message: "Usuário já cadastrado" });
     return res
       .status(201)
-      .json(
-        { message: "Usuário cadastrado com sucesso" },
-        { name: userExist.name, email: userExist.email }
-      );
+      .json({
+        message: "Usuário cadastrado com sucesso",
+        name: userExist.name,
+        email: userExist.email,
+      });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Erro interno do servidor" });
