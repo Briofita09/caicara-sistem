@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-const userSchema = new Schema(
+const employeeSchema = new Schema(
   {
     name: {
       type: String,
@@ -14,12 +14,13 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
     },
-    passwordHash: {
+    address: {
       type: String,
       required: true,
     },
+    position: String,
   },
   { timestamps: true }
 );
 
-export default model("User", userSchema);
+export default model("Employee", employeeSchema);

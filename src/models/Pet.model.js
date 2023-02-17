@@ -33,6 +33,22 @@ const petSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    foodType: {
+      type: String,
+      enum: ["natural", "racao"],
+    },
+    typeServices: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "TypeService",
+      },
+    ],
+    tutor: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Tutor",
+      },
+    ],
     description: String,
   },
   { timestamps: true }
