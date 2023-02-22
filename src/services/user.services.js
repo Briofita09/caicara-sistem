@@ -7,7 +7,6 @@ const numberOfSalts = 10;
 
 export async function createUser(user) {
   const userExist = await userRepository.findUserByEmail(user.email);
-  console.log(userExist);
 
   if (userExist) return null;
 
@@ -24,7 +23,6 @@ export async function loginUser(user) {
   const userExist = await userRepository.findUserByEmail(user.email);
 
   if (!userExist) return null;
-  console.log(userExist);
 
   if (!bcrypt.compareSync(user.password, userExist.passwordHash)) return null;
 

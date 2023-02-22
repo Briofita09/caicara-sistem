@@ -1,5 +1,6 @@
 import * as userService from "../services/user.services.js";
 import * as userRepository from "../repositories/user.repository.js";
+import sendNewUserMail from "../utils/sendMail.js";
 
 export async function createUser(req, res) {
   try {
@@ -7,11 +8,22 @@ export async function createUser(req, res) {
     const userExist = await userService.createUser(user);
     if (!userExist)
       return res.status(409).json({ message: "Usuário já cadastrado" });
-    return res.status(201).json({
-      message: "Usuário cadastrado com sucesso",
-      name: userExist.name,
-      email: userExist.email,
-    });
+    const mail = await sendNewUserMail(user);
+    if (mail) {
+      return res.status(201).json({
+        message: "Usuário cadastrado com sucesso",
+        name: userExist.name,
+        email: userExist.email,
+      });
+    }
+    if (!mail) {
+      return res.status(201).json({
+        message:
+          "Usuário cadastrado com sucesso, porém email não enviado devido a falha no servidor",
+        name: userExist.name,
+        email: userExist.email,
+      });
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Erro interno do servidor" });

@@ -9,5 +9,5 @@ export async function findUserByEmail(email) {
 }
 
 export async function getUsers() {
-  return await User.find();
+  return await User.find().select({ passwordHash: 0 });
 }

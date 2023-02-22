@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 export default async function isAuhtenticatedMiddleware(req, res, next) {
   try {
     const token = req.header("Authorization");
