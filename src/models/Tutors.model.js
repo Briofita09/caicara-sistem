@@ -17,7 +17,7 @@ const tutorSchema = new Schema(
       required: true,
     },
     phoneNumber: {
-      type: Number,
+      type: String,
       required: true,
     },
     debt: Boolean,

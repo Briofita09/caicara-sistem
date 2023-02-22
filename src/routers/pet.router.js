@@ -21,4 +21,12 @@ petRouter.put(
   petController.editPet
 );
 
+petRouter.get("/pet", isAuhtenticatedMiddleware, petController.getPets);
+
+petRouter.delete(
+  "/pet/:petId/delete",
+  isAuhtenticatedMiddleware,
+  petController.petDelete
+);
+
 export { petRouter };
