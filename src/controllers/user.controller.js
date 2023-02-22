@@ -1,6 +1,6 @@
 import * as userService from "../services/user.services.js";
 import * as userRepository from "../repositories/user.repository.js";
-import sendNewUserMail from "../utils/sendMail.js";
+import { sendNewUserMail } from "../utils/sendMail.js";
 
 export async function createUser(req, res) {
   try {

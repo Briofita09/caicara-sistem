@@ -1,6 +1,6 @@
 import joi from "joi";
 
-export const pet = joi.object({
+export const PetSchema = joi.object({
   name: joi.string().required(),
   age: joi.number().required(),
   birthday: joi.date().required(),

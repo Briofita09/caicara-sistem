@@ -3,11 +3,12 @@ import cors from "cors";
 import connectDb from "./database/db.connection.js";
 import "dotenv/config";
 import { userRouter } from "./routers/user.router.js";
+import { petRouter } from "./routers/pet.router.js";
 
 const app = express();
 connectDb();
 
-app.use(cors()).use(express.json()).use(userRouter);
+app.use(cors()).use(express.json()).use(userRouter).use(petRouter);
 
 const PORT = process.env.PORT || 5000;
 
