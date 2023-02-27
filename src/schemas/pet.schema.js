@@ -2,6 +2,7 @@ import joi from "joi";
 
 export const PetSchema = joi.object({
   name: joi.string().required(),
+  genre: joi.string().required(),
   age: joi.number().required(),
   birthday: joi.date().required(),
   breed: joi.string(),

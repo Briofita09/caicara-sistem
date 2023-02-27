@@ -8,6 +8,11 @@ const petSchema = new Schema(
       required: true,
       trim: true,
     },
+    genre: {
+      type: String,
+      required: true,
+      enum: ["male", "female"],
+    },
     age: {
       type: Number,
       required: true,
