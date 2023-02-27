@@ -1,4 +1,5 @@
 import * as petRepository from "../repositories/pet.repository.js";
+import * as petServices from "../services/pet.services.js";
 
 export async function newPet(req, res) {
   try {
@@ -31,6 +32,28 @@ export async function getPets(_req, res) {
   try {
     const pets = await petRepository.getPets();
     return res.status(200).json(pets);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
+
+export async function getOnePet(req, res) {
+  try {
+    const { petId } = req.params;
+    const pet = await petRepository.findPet(petId);
+    return res.status(200).json(pet);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Erro interno do servidor" });
+  }
+}
+
+export async function calculateServicesInAMonth(req, res) {
+  try {
+    const { month } = req.params;
+    const petsServices = await petServices.calculateServicesInAMonth(month);
+    return res.status(200).json(petsServices);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Erro interno do servidor" });

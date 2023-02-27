@@ -16,15 +16,8 @@ export async function newService(req, res) {
         .status(404)
         .json({ message: "Tipo de serviço não encontrado" });
     const newService = await serviceRepository.newService(service);
-    const assignService = await petRepository.assignService(
-      newService._id,
-      newService.petId
-    );
-    console.log(assignService);
-    return res.status(201).json({
-      message: `${typeService.name} cadastrado com sucesso para o pet ${petExist.name}`,
-      newService,
-    });
+    await petRepository.assignService(newService._id, newService.petId);
+    return res.status(201).json({ newService });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Erro interno do servidor" });

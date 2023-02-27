@@ -21,7 +21,19 @@ petRouter.put(
   petController.editPet
 );
 
+petRouter.get(
+  "/pet/:petId/show",
+  isAuhtenticatedMiddleware,
+  petController.getOnePet
+);
+
 petRouter.get("/pet", isAuhtenticatedMiddleware, petController.getPets);
+
+petRouter.get(
+  "/pet/:month/services",
+  isAuhtenticatedMiddleware,
+  petController.calculateServicesInAMonth
+);
 
 petRouter.delete(
   "/pet/:petId/delete",
