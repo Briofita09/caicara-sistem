@@ -43,7 +43,7 @@ export async function petDelete(req, res) {
     const petDeleted = await petRepository.petDelete(petId);
     if (!petDeleted)
       return res.status(404).json({ message: "Pet não encontrado" });
-    return res.status(204);
+    return res.sendStatus(204);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Erro interno do servidor" });

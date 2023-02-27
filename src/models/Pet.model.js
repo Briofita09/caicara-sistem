@@ -43,6 +43,12 @@ const petSchema = new Schema(
         ref: "TypeService",
       },
     ],
+    services: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Service",
+      },
+    ],
     tutor: [
       {
         type: Schema.Types.ObjectId,

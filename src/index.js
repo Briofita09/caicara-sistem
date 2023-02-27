@@ -5,6 +5,7 @@ import "dotenv/config";
 import { userRouter } from "./routers/user.router.js";
 import { petRouter } from "./routers/pet.router.js";
 import { tutorRouter } from "./routers/tutor.router.js";
+import { typeServiceRouter } from "./routers/typeServices.router.js";
 
 const app = express();
 connectDb();
@@ -14,7 +15,8 @@ app
   .use(express.json())
   .use(userRouter)
   .use(petRouter)
-  .use(tutorRouter);
+  .use(tutorRouter)
+  .use(typeServiceRouter);
 
 const PORT = process.env.PORT || 5000;
 

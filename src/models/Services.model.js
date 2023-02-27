@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { model, Schema } = mongoose;
 
-const userSchema = new Schema(
+const serviceSchema = new Schema(
   {
     serviceId: {
       type: Schema.Types.ObjectId,
@@ -11,8 +11,12 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Pet",
     },
+    serviceDate: {
+      type: Date,
+      default: Date.now(),
+    },
   },
   { timestamps: true }
 );
 
-export default model("User", userSchema);
+export default model("Service", serviceSchema);
