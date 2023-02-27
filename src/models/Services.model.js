@@ -3,7 +3,7 @@ const { model, Schema } = mongoose;
 
 const serviceSchema = new Schema(
   {
-    serviceId: {
+    typeServiceId: {
       type: Schema.Types.ObjectId,
       ref: "TypeService",
     },

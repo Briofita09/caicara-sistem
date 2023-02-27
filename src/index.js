@@ -1,11 +1,13 @@
 import express from "express";
 import cors from "cors";
-import connectDb from "./database/db.connection.js";
 import "dotenv/config";
+
+import connectDb from "./database/db.connection.js";
 import { userRouter } from "./routers/user.router.js";
 import { petRouter } from "./routers/pet.router.js";
 import { tutorRouter } from "./routers/tutor.router.js";
 import { typeServiceRouter } from "./routers/typeServices.router.js";
+import { serviceRouter } from "./routers/service.router.js";
 
 const app = express();
 connectDb();
@@ -16,7 +18,8 @@ app
   .use(userRouter)
   .use(petRouter)
   .use(tutorRouter)
-  .use(typeServiceRouter);
+  .use(typeServiceRouter)
+  .use(serviceRouter);
 
 const PORT = process.env.PORT || 5000;
 
